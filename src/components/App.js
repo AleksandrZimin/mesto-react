@@ -1,4 +1,3 @@
-import "../index.css";
 import { useState, useEffect } from "react";
 import Card from "./Card.js";
 import Header from "./Header.js";
@@ -7,18 +6,11 @@ import Main from "./Main.js";
 import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup";
 
-//const cards = ["карточка 1", "карточка 2", "карточка 3"];
-
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
-  const [cards, setCards] = useState([
-    "карточка 1",
-    "карточка 2",
-    "карточка 3",
-  ]);
 
   const handleEditAvatarClick = () => {
     setEditAvatarPopupOpen(true);
@@ -59,6 +51,7 @@ function App() {
         onClose={closeAllPopups}
         name="profile"
         title="Редактировать профиль"
+        buttonText="Сохранить"
         // onSubmit={handleSubmit}
       >
         <input
@@ -67,8 +60,8 @@ function App() {
           class="form__input form__input_place_name"
           placeholder="Имя"
           required
-          minlength="2"
-          maxlength="40"
+          minLength="2"
+          maxLength="40"
         />
         <span id="name-error" class="popup-error"></span>
         <input
@@ -77,8 +70,8 @@ function App() {
           class="form__input form__input_place_job"
           placeholder="О себе"
           required
-          minlength="2"
-          maxlength="200"
+          minLength="2"
+          maxLength="200"
         />
         <span id="job-error" class="popup-error"></span>
       </PopupWithForm>
@@ -88,6 +81,7 @@ function App() {
         onClose={closeAllPopups}
         name="avatar"
         title="Обновить аватар"
+        buttonText="Сохранить"
         // onSubmit={handleSubmit}
       >
         <input
@@ -105,6 +99,7 @@ function App() {
         onClose={closeAllPopups}
         name="card"
         title="Новое место"
+        buttonText="Создать"
         // onSubmit={handleSubmit}
       >
         <input
@@ -113,8 +108,8 @@ function App() {
           class="form__input form__input_place_title"
           placeholder="Название"
           required
-          minlength="2"
-          maxlength="30"
+          minLength="2"
+          maxLength="30"
         />
         <span id="title-error" class="popup-error"></span>
         <input

@@ -3,7 +3,13 @@ import Api from "../utils/Api";
 import { useState, useEffect } from "react";
 import Card from "./Card";
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick }) {
+function Main({
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  handleCardClick,
+  buttonText,
+}) {
   const [userData, setUserData] = useState({
     userName: "",
     userDescription: "",
@@ -56,7 +62,11 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, handleCardClick }) {
           </section>
           <section className="elements">
             {cards.map((item) => (
-              <Card key={item} item={item} handleCardClick={handleCardClick} />
+              <Card
+                key={item._id}
+                item={item}
+                handleCardClick={handleCardClick}
+              />
             ))}
           </section>
         </main>
