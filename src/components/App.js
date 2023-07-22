@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import Api from "../utils/Api";
-import Card from "./Card.js";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 import Main from "./Main.js";
-import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup";

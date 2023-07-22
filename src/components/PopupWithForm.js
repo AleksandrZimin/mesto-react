@@ -33,4 +33,3 @@ function PopupWithForm({
 }
 
 export default PopupWithForm;
-// popup_type_${props.name}
