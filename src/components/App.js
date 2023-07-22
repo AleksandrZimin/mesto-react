@@ -56,15 +56,17 @@ function App() {
   };
 
   const updateUser = (userData) => {
-    Api.editProfile(userData).then((newUserData) => {
-      setCurrentUser({
-        userName: newUserData.name,
-        userDescription: newUserData.about,
-        userAvatar: newUserData.avatar,
-        _id: newUserData._id,
-      });
-      closeAllPopups();
-    });
+    Api.editProfile(userData)
+      .then((newUserData) => {
+        setCurrentUser({
+          userName: newUserData.name,
+          userDescription: newUserData.about,
+          userAvatar: newUserData.avatar,
+          _id: newUserData._id,
+        });
+        closeAllPopups();
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
   };
 
   const closeAllPopups = () => {
@@ -78,36 +80,44 @@ function App() {
     const isLiked = card.likes.some((user) => {
       return currentUser._id === user._id;
     });
-    Api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
-      setCards((cards) =>
-        cards.map((item) => (item._id === card._id ? newCard : item))
-      );
-    });
+    Api.changeLikeCardStatus(card._id, isLiked)
+      .then((newCard) => {
+        setCards((cards) =>
+          cards.map((item) => (item._id === card._id ? newCard : item))
+        );
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
   };
 
   const handleDeleteCard = (card) => {
-    Api.deleteCard(card._id).then(() => {
-      setCards(cards.filter((item) => item._id !== card._id));
-    });
+    Api.deleteCard(card._id)
+      .then(() => {
+        setCards(cards.filter((item) => item._id !== card._id));
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
   };
 
   const onUpdateAvatar = (avatarData) => {
-    Api.updateAvatar(avatarData).then((newUserData) => {
-      setCurrentUser({
-        userName: newUserData.name,
-        userDescription: newUserData.about,
-        userAvatar: newUserData.avatar,
-        _id: newUserData._id,
-      });
-      closeAllPopups();
-    });
+    Api.updateAvatar(avatarData)
+      .then((newUserData) => {
+        setCurrentUser({
+          userName: newUserData.name,
+          userDescription: newUserData.about,
+          userAvatar: newUserData.avatar,
+          _id: newUserData._id,
+        });
+        closeAllPopups();
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
   };
 
   const onAddPlace = (cardData) => {
-    Api.addNewCard(cardData).then((newCardData) => {
-      setCards([newCardData, ...cards]);
-      closeAllPopups();
-    });
+    Api.addNewCard(cardData)
+      .then((newCardData) => {
+        setCards([newCardData, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
   };
 
   return (
