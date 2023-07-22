@@ -1,7 +1,7 @@
-import Vector1 from "../images/Vector(1).svg";
-import Api from "../utils/Api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Card from "./Card";
+import CurrentUserContext from "../contexts/CurrentUserContext";
+import Vector1 from "../images/Vector(1).svg";
 
 function Main({
   onEditProfile,
@@ -9,28 +9,11 @@ function Main({
   onEditAvatar,
   handleCardClick,
   buttonText,
+  cards,
+  handleCardLike,
+  handleDeleteCard,
 }) {
-  const [userData, setUserData] = useState({
-    userName: "",
-    userDescription: "",
-    userAvatar: "",
-  });
-
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    Promise.all([Api.getCard(), Api.getUserInfo()])
-      .then(([cards, userInfomation]) => {
-        const { name, about, avatar } = userInfomation;
-        setUserData({
-          userName: name,
-          userDescription: about,
-          userAvatar: avatar,
-        });
-        setCards(cards);
-      })
-      .catch((err) => console.log(`Ошибка: ${err}`));
-  }, []);
+  const userData = useContext(CurrentUserContext);
 
   return (
     <>
@@ -66,6 +49,8 @@ function Main({
                 key={item._id}
                 item={item}
                 handleCardClick={handleCardClick}
+                handleCardLike={handleCardLike}
+                handleDeleteCard={handleDeleteCard}
               />
             ))}
           </section>

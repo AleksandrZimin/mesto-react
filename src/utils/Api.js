@@ -23,14 +23,11 @@ class Api {
     return Promise.reject(res.status);
   }
 
-  editProfile({ name, job }) {
+  editProfile(userData) {
     return fetch(`${this.baseUrl}users/me`, {
       method: "PATCH",
       headers: this.header,
-      body: JSON.stringify({
-        name: name,
-        about: job,
-      }),
+      body: JSON.stringify(userData),
     }).then((res) => this._checkResponse(res));
   }
 
@@ -54,6 +51,13 @@ class Api {
       method: "PUT",
       headers: this.header,
     }).then((res) => this._checkResponse(res));
+  }
+
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.removeLike(cardId);
+    }
+    return this.addLike(cardId);
   }
 
   updateAvatar({ avatar }) {
