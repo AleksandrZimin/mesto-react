@@ -86,10 +86,8 @@ function App() {
   };
 
   const handleDeleteCard = (card) => {
-    Api.deleteCard(card._id).then((deletedCard) => {
-      setCards((cards) => {
-        cards.filter((item) => item._id !== deletedCard._id);
-      });
+    Api.deleteCard(card._id).then(() => {
+      setCards(cards.filter((item) => item._id !== card._id));
     });
   };
 
